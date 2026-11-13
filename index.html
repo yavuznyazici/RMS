@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1020">
+  <meta name="description" content="RMS – Running Memory Span. DLR pilot sınavı hazırlığı için çevrimdışı hafıza oyunu.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <title>RMS – Running Memory Span</title>
+</head>
+<body>
+  <main id="app" class="app-shell">
+    <section id="home-screen" class="screen active" aria-labelledby="app-title">
+      <div class="home-content">
+        <div class="brand-mark" aria-hidden="true">RMS</div>
+        <h1 id="app-title">Running<br>Memory Span</h1>
+        <p class="subtitle">DLR pilot sınavı hazırlığı</p>
+      </div>
+      <div class="home-secondary">
+        <button class="button button-secondary" data-action="settings">Ayarlar</button>
+        <button class="button button-secondary" data-action="stats">İstatistikler</button>
+      </div>
+      <button class="start-button" data-action="start" aria-label="Oyunu başlat">
+        <span>Başla</span><span class="start-arrow" aria-hidden="true">→</span>
+      </button>
+    </section>
+
+    <section id="ready-screen" class="screen center-screen" aria-label="Hazırlık">
+      <div id="countdown" class="countdown" aria-live="assertive">2</div>
+    </section>
+
+    <section id="listening-screen" class="screen center-screen" aria-label="Dinleme">
+      <div class="pulse-orb" aria-hidden="true"></div>
+    </section>
+
+    <section id="answer-screen" class="screen answer-screen" aria-label="Cevap girişi">
+      <div class="answer-top">
+        <button class="icon-button" data-action="home" aria-label="Ana menüye dön">←</button>
+        <p class="hint">Duyduğun son rakamları gir</p>
+        <span class="top-spacer" aria-hidden="true"></span>
+      </div>
+      <div id="typed-display" class="typed-display" aria-live="polite" aria-label="Girilen rakamlar"></div>
+      <div class="keypad" aria-label="Rakam tuş takımı">
+        <button class="key" data-digit="1">1</button><button class="key" data-digit="2">2</button><button class="key" data-digit="3">3</button>
+        <button class="key" data-digit="4">4</button><button class="key" data-digit="5">5</button><button class="key" data-digit="6">6</button>
+        <button class="key" data-digit="7">7</button><button class="key" data-digit="8">8</button><button class="key" data-digit="9">9</button>
+        <button class="key key-muted" data-action="delete" aria-label="Son rakamı sil">⌫</button><button class="key">0</button><button class="key key-muted key-empty" aria-hidden="true" tabindex="-1"></button>
+      </div>
+      <div class="answer-actions">
+        <button class="button button-secondary" data-action="clear">Sil</button>
+        <button id="submit-answer" class="button button-primary" data-action="submit" disabled>Onayla</button>
+      </div>
+    </section>
+
+    <section id="result-screen" class="screen result-screen" aria-label="Oyun sonucu">
+      <div class="result-heading">
+        <p class="eyebrow">TAMAMLANDI</p>
+        <h2 id="score-heading">SKOR 0 / 0</h2>
+        <p id="result-detail" class="result-detail"></p>
+      </div>
+      <div class="comparison-card">
+        <p class="comparison-label">Senin cevabın</p>
+        <div id="player-row" class="digit-row" aria-label="Oyuncunun cevabı"></div>
+        <div class="comparison-divider"></div>
+        <p class="comparison-label">Doğru sıra</p>
+        <div id="target-row" class="digit-row" aria-label="Doğru cevap"></div>
+      </div>
+      <details class="sequence-details">
+        <summary>Seriyi göster</summary>
+        <p id="full-sequence" class="full-sequence"></p>
+      </details>
+      <div class="result-actions">
+        <button class="button button-primary" data-action="replay">Tekrar Oyna</button>
+        <button class="button button-secondary" data-action="home">Ana Menü</button>
+      </div>
+    </section>
+
+    <section id="settings-screen" class="screen sub-screen" aria-label="Ayarlar">
+      <header class="sub-header"><button class="icon-button" data-action="home" aria-label="Geri">←</button><h2>Ayarlar</h2><span></span></header>
+      <div class="panel settings-panel">
+        <div class="setting-block">
+          <div class="setting-heading"><label for="speed-slider">Hız</label><strong id="speed-label">1,5 sn</strong></div>
+          <input id="speed-slider" type="range" min="0" max="9" step="1" value="0" aria-label="Rakamlar arası bekleme süresi">
+          <div class="range-ends"><span>Yavaş</span><span>Hızlı</span></div>
+        </div>
+        <div class="setting-block">
+          <label for="voice-select">İngilizce ses</label>
+          <select id="voice-select" aria-label="İngilizce ses seçimi"></select>
+          <button class="button button-secondary full-button" data-action="test-voice">Sesi dene</button>
+          <p id="voice-message" class="small-message" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats-screen" class="screen sub-screen" aria-label="İstatistikler">
+      <header class="sub-header"><button class="icon-button" data-action="home" aria-label="Geri">←</button><h2>İstatistikler</h2><span></span></header>
+      <div id="stats-content" class="stats-content"></div>
+      <button class="button button-secondary reset-button" data-action="reset-stats">Verileri sıfırla</button>
+    </section>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>

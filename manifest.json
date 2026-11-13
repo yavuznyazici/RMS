@@ -1,0 +1,14 @@
+{
+  "name": "RMS – Running Memory Span",
+  "short_name": "RMS",
+  "description": "DLR pilot sınavı hazırlığı için çevrimdışı hafıza oyunu.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B1020",
+  "theme_color": "#0B1020",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
