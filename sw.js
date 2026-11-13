@@ -1,5 +1,5 @@
 /* Basit sürüm kontrollü çevrimdışı önbellek. */
-const CACHE_NAME = "rms-shell-v1";
+const CACHE_NAME = "rms-shell-v2";
 const APP_FILES = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json", "./icon.svg"];
 
 self.addEventListener("install", event => {
